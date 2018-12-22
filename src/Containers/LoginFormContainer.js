@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Col, FormControl, Button, ControlLabel } from 'react-bootstrap';
+import { ApplicationContext } from '../Context/ApplicationContext'
 
 export class LoginFormContainer extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       email: '',
@@ -11,7 +12,7 @@ export class LoginFormContainer extends Component {
       isLoggedin: false
     };
   }
-
+ 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
@@ -22,54 +23,51 @@ export class LoginFormContainer extends Component {
     });
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     this.setState({ isLoggedin: true });
 
+    this.context.user.isAuthenticated = true;
+    
     setTimeout(() => {
-      this.setState({ isLoggedin: false });
-      // this.props.history.push('/');
+       this.props.history.push('/');
     }, 3000);
   }
 
   render() {
-    const isLoggedin = this.state.isLoggedin;
+    return (
+        <Form horizontal onSubmit={this.handleSubmit}>
 
-    return !isLoggedin ? (
-
-      <Form horizontal onSubmit={this.handleSubmit}>
-
-        <FormGroup controlId="email">
-          <Col componentClass={ControlLabel} sm={2}>
-            Email
+          <FormGroup controlId="email">
+            <Col componentClass={ControlLabel} sm={2}>
+              Email
          </Col>
-          <Col sm={10}>
-            <FormControl autoFocus type="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} />
+            <Col sm={10}>
+              <FormControl autoFocus type="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} />
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="password">
+            <Col componentClass={ControlLabel} sm={2}>
+              Password
           </Col>
-        </FormGroup>
+            <Col sm={10}>
+              <FormControl type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+            </Col>
+          </FormGroup>
 
-        <FormGroup controlId="password">
-          <Col componentClass={ControlLabel} sm={2}>
-            Password
-          </Col>
-          <Col sm={10}>
-            <FormControl type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
-          </Col>
-        </FormGroup>
-
-        <FormGroup>
-          <Col smOffset={2} sm={10}></Col>
-        </FormGroup>
-
-        <FormGroup>
-          <Col smOffset={2} sm={10}>
-            <Button type="submit" disabled={!this.validateForm()}>Login</Button>
-          </Col>
-        </FormGroup>
-
-      </Form>) :
-
-      <img src='https://media.giphy.com/media/dwDDFp70e1OSc/giphy.gif' alt='spinner' />
+          <FormGroup>
+            <Col smOffset={2} sm={10}></Col>
+          </FormGroup>
+          <FormGroup>
+            <Col smOffset={2} sm={10}>
+              <Button type="submit" disabled={!this.validateForm()}>Login</Button>
+            </Col>
+          </FormGroup>
+        </Form>
+      )
   }
 }
+
+LoginFormContainer.contextType = ApplicationContext;

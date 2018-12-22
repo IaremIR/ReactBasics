@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-export class Navigation extends Component {
-    render() {
-        return (
+import { ApplicationConsumer } from '../Context/ApplicationContext';
+import { Avatar } from '../Shared/Avatar';
+
+export const Navigation = () => (
+    <ApplicationConsumer>
+        {(value) => (
             <Navbar inverse collapseOnSelect>
                 <Navbar.Brand>
                     <LinkContainer to="/">
                         <NavItem eventKey={1}>
-                            Home
-           </NavItem>
+                            Home 
+                   </NavItem>
                     </LinkContainer>
                 </Navbar.Brand>
+
                 <Nav>
                     <LinkContainer to="/brands">
                         <NavItem eventKey={2}>
@@ -32,22 +36,20 @@ export class Navigation extends Component {
                         </NavItem>
                     </LinkContainer>
                 </Nav>
-                <Nav pullRight>
+                {value.user.isAuthenticated === false ?
+                (<Nav pullRight>
                     <LinkContainer to="/login">
                         <NavItem eventKey={5}>
                             Log in
                         </NavItem>
                     </LinkContainer>
-
                     <LinkContainer to="/signup">
                         <NavItem eventKey={6}>
                             Sign up
                     </NavItem>
                     </LinkContainer>
-
-                </Nav>
-
-            </Navbar>
-        )
-    }
-}
+                </Nav>)
+                : <Avatar url='https://placekitten.com/g/64/64' img="spinner" />}
+            </Navbar>)}
+    </ApplicationConsumer>
+)

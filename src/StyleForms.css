@@ -1,0 +1,17 @@
+.signup  {
+    box-sizing: content-box;
+    margin: 0 auto;
+    padding: 10 px;
+    max-width: 400px;
+    background-color: #d0d6db; 
+    text-align: center;
+    font-family: "Roboto"
+    
+    
+}
+.table,th,td {
+background-color:#B6C1C4;
+max-width: 500px;      
+text-align: center; 
+width: 100%;  
+}

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Carousel } from 'react-bootstrap';
 
-import prada from './../images/prada.png';
-import hermes from './../images/hermes.png';
-import nike from './../images/nike.png';
+import isl from './../images/image1.jpg';
+import chanel from './../images/image2.png';
+import dolce from './../images/image3.jpg';
+import hugoboss from './../images/image4.jpg'
 
 
 export class HomeContainer extends Component {
@@ -11,15 +12,19 @@ export class HomeContainer extends Component {
     return (
       <Carousel>
         <Carousel.Item>
-          <img width={500} height={500} alt="500x500" src={nike} />
+          <img width={500} height={500} alt="500x500" src={isl} />
         </Carousel.Item>
 
         <Carousel.Item>
-          <img width={500} height={500} alt="500x500" src={prada} />
+          <img width={500} height={500} alt="500x500" src={chanel} />
         </Carousel.Item>
 
         <Carousel.Item>
-          <img width={500} height={500} alt="500x500" src={hermes} />
+          <img width={500} height={500} alt="500x500" src={dolce} />
+        </Carousel.Item>
+
+        <Carousel.Item>
+          <img width={500} height={500} alt="500x500" src={hugoboss} />
         </Carousel.Item>
       </Carousel>
     )

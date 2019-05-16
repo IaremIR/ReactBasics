@@ -20,7 +20,8 @@ const Routes = () => (
           path="/"
           component={HomeContainer}
         />
-        <Route path="/brands" component={BrandsContainer} />
+        <Route path="/brands" render={() =>
+          <BrandsContainer color='red' />} />
         <Route path="/men" component={MenClothContainer} />
         <Route path="/women" component={WomenClothContainer} />
         <Route path="/login" component={LoginFormContainer} />

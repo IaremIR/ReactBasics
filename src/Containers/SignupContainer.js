@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, ControlLabel, Button, Checkbox, Col, HelpBlock } from 'react-bootstrap';
-// import './../StyleForms.css';
 
 export class SignupContainer extends Component {
     constructor(props) {
@@ -15,15 +14,13 @@ export class SignupContainer extends Component {
         };
     }
 
-
-
     validateEmail() {
         const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if (emailRex.test(this.state.email)) {
-            return 'success'
+            return 'success';
         } else {
-            return 'error'
+            return 'error';
         }
     }
 
@@ -33,9 +30,6 @@ export class SignupContainer extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-    //     this.setState({ isLoading: true });
-    // ;
-
         setTimeout(() => {
             this.setState({ isLoading: false });
             this.props.history.push('/');
@@ -44,13 +38,12 @@ export class SignupContainer extends Component {
 
     render() {
         const isLoading = this.state.isLoading;
-        const {fullName,password,confirmPassword} = this.state;
-        const isEnabled = 
-        fullName.length<15 && password.length>4 && confirmPassword === password && this.validateEmail() === 'success';
-        
+        const { fullName, password, confirmPassword } = this.state;
+        const isEnabled =
+            fullName.length < 20 && password.length > 4 && confirmPassword === password && this.validateEmail() === 'success';
 
 
-        return isLoading ? (
+     return isLoading ? (
             <div>
                 <img src='https://i.gifer.com/1amw.gif' alt='spin' />
             </div>) :
@@ -58,16 +51,16 @@ export class SignupContainer extends Component {
             <form className='signup' onSubmit={this.handleSubmit} >
                 <FormGroup
                     controlId="fullName"
-                    validationState={this.state.fullName.length < 15 ? 'success' : 'error'}>
+                    validationState={this.state.fullName.length < 20 ? 'success' : 'error'}>
                     <Col sm={7}>
                         <ControlLabel >Full name</ControlLabel>
-                        <FormControl 
+                        <FormControl
                             type="text"
                             placeholder="Full name"
                             value={this.state.fullName}
                             onChange={this.handleChange}
                         />
-                        <HelpBlock> Must be less than 15 signs </HelpBlock>
+                        <HelpBlock> Must be less than 20 signs </HelpBlock>
                     </Col>
                 </FormGroup >
                 <FormGroup
@@ -83,7 +76,7 @@ export class SignupContainer extends Component {
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="password"
-                    validationState={this.state.password.length > 4 ? 'success':'error'}>
+                    validationState={this.state.password.length > 4 ? 'success' : 'error'}>
                     <Col sm={7}>
                         <ControlLabel>Password</ControlLabel>
                         <FormControl type="password" placeholder='Password'
@@ -113,11 +106,11 @@ export class SignupContainer extends Component {
                 <FormGroup>
                     <Col smOffset={0} sm={10}>
                         <Button
-                           disabled = {!isEnabled}
+                            disabled={!isEnabled}
                             bsStyle='primary'
                             type="submit"
                             text="Signup">
-                             Sign up
+                            Sign up
                         </Button>
                     </Col>
                 </FormGroup>

@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "productTitle": "Nice dress",
+        "style": "wedding",
+        "price": "100€"
+    },
+    {
+        "id": 2,
+        "productTitle": "Casual jacket",
+        "style": "casual",
+        "price": "120€"
+    },
+    {
+        "id": 3,
+        "productTitle": "Suit",
+        "style": "smart casual",
+        "price": "200€"
+    }
+]

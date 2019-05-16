@@ -21,5 +21,4 @@ class ApplicationProvider extends React.Component {
         )
     }
 }
-
 export default ApplicationProvider;
